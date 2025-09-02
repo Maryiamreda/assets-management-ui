@@ -4,11 +4,11 @@ import { EmployeeDashboard } from './components/employee-dashboard/employee-dash
 
 export const routes: Routes = [
   {
-    path: 'users/login',
+    path: 'login',
     component: Login
   },
   {
-    path: 'users/dashboard',   // fixed typo: "dasboard" → "dashboard"
+    path: 'dashboard',   // fixed typo: "dasboard" → "dashboard"
     component: EmployeeDashboard
   }
 ];
