@@ -4,7 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import Toastify from 'toastify-js';
+// import Toastify from 'toastify-js';
 
 @Component({
   selector: 'app-login',
@@ -50,10 +50,10 @@ export class Login {
     togglePassword() {
         this.showPassword = !this.showPassword;
     }
-formSubmitted = false;
+
 
  onSubmit() {
-this.formSubmitted = true;
+
 
         const email = this.email?.value!;
         const password = this.password?.value!;
