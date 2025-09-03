@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { ToastService } from 'angular-toastify';
 // import Toastify from 'toastify-js';
 
 @Component({
@@ -19,7 +20,7 @@ export class Login {
     faLock = faLock;
     showPassword = false;
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router, private toast: ToastService) {}
 
     profileForm = new FormGroup({
         email: new FormControl('', [
@@ -60,6 +61,8 @@ export class Login {
 
         if (this.profileForm.invalid  ) {
             this.profileForm.markAllAsTouched();
+                  this.toast.error('Please fill in all required fields correctly.');
+
             return;
         }
 
@@ -68,12 +71,13 @@ export class Login {
 
         this.authService.login(email, password, keepLoggedIn).subscribe({
             next: (user) => {
-                console.log('From login form:', user);
+                this.toast.success('Login successful')
                 console.log('Login successful:', user);
                 this.router.navigate([`/${user.role}-dashboard`]);
             },
             error: (err) => {
-               
+     this.toast.error(err);
+
                 console.error('Login failed:', err.message);
             }
         });
